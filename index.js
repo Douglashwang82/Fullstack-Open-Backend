@@ -96,6 +96,21 @@ app.post('/api/persons', (request, response) => {
     return response.status(204).json({message: "success added"});
 })
 
+app.put('/api/persons/:id', (request, response) => {
+  const id = Number(request.params.id);
+  const found = phonebook.find(e => e.id === id);
+  const newObject = {
+    name: request.body.name,
+    number: request.body.number,
+    id: id
+  }
+  found = newObject;
+  
+  response.status(204).end();
+  console.log('deleted an object');
+
+})
+
 
 // this middleware at the bottom because it handle all unkonwn routes.
 const unknownEndpoint = (request, response) => {
