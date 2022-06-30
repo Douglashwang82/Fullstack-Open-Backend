@@ -93,7 +93,7 @@ app.post('/api/persons', (request, response) => {
         "number": request.body.number
     }
     phonebook = phonebook.concat(newObject);
-    return response.status(206).end();
+    return response.status(206).json({message: "success added"});
 })
 
 
