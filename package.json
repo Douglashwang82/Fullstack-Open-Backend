@@ -1,0 +1,30 @@
+{
+  "name": "phonebook",
+  "version": "0.0.1",
+  "description": "fullstackopen part3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Douglashwang82/Fullstack-Open-Backend.git"
+  },
+  "author": "Douglas Hwang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Douglashwang82/Fullstack-Open-Backend/issues"
+  },
+  "homepage": "https://github.com/Douglashwang82/Fullstack-Open-Backend#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.18"
+  },
+  "dependencies": {
+    "cor": "^0.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "morgan": "^1.10.0"
+  }
+}
