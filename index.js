@@ -5,6 +5,8 @@ const PORT = process.env.PORT;
 const morgan = require('morgan');            // logs
 const cors = require('cors');                // handle error cross side..
 const Persons = require('./models/persons'); // mongodb
+console.log(process.env.URL);
+console.log(process.env.PORT);
 
 
 app.use(express.static('build'));
