@@ -8,8 +8,20 @@ mongoose.connect(url)
     .catch(err => console.log('error connecting to MongoDB:',err.message));
 
 const personSchema = new mongoose.Schema({
-    name:String,
-    number:String,
+    name:{
+        type:String,
+        required: true
+    },
+    number:{
+        type:String,
+        validate: function(v){
+            const pattern1 = /^\d{2,3}-\d+$/;
+            const pattern2 = /^.{9,}$/;
+            return pattern1.test(v) && pattern2.test(v);
+        },
+        message: `Number Validation fail.`,
+        required: true
+    },
 })
 
 personSchema.set('toJSON',{

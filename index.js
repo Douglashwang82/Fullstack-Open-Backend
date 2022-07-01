@@ -43,12 +43,6 @@ app.get('/api/persons/:id', (request, response, next) => {
 
 app.post('/api/persons', (request, response, next) => {
   
-  if (!request.body.name || !request.body.number) {
-    return response.status(400).json({
-      error: 'name or number missing'
-    });
-  }
-
   const person = new Persons({
     name: request.body.name,
     number: request.body.number,
@@ -79,11 +73,12 @@ app.delete('/api/persons/:id', (request, response) => {
 
 
 app.put('/api/persons/:id', (request, response,next) => {
+  const {name, number} = request.body;
   const newPerson = {
-    name: request.body.name,
-    number: request.body.number,
+    name: name,
+    number: number
   }
-  Persons.findByIdAndUpdate(request.params.id, newPerson)
+  Persons.findByIdAndUpdate(request.params.id, newPerson, {new:true, runValidators: true, context: 'query'}) // valifation doesnt active automatically
     .then(updatePerson => {
       response.json(newPerson);
     })
@@ -104,6 +99,8 @@ const errorHandler = (error, request, response, next) => {
 
   if (error.name === 'CastError'){
     return response.status(400).send({ error: 'malformatted id'})
+  } else if (error.name === 'ValidationError') {
+    return response.status(400).json({error: error.message});
   }
 
   next(error);
